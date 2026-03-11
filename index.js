@@ -2,8 +2,9 @@ const modal = document.querySelector("#modal")
 const openBtn = document.querySelector("#openModal")
 const closeBtn = document.querySelector("#closeModal")
 const bookForm = document.querySelector('#bookForm')
+const bookCard = document.querySelector('#bookCard')
 
-const myLibrary = []
+let myLibrary = []
 
 function Book(title,author,pages,read){
   this.id = crypto.randomUUID()
@@ -12,6 +13,10 @@ function Book(title,author,pages,read){
   this.pages = pages
   this.read = read
 
+}
+
+Book.prototype.updateReadStatus = function(){
+  return this.read = !this.read
 }
 
 bookForm.addEventListener('submit',function(e){
@@ -29,6 +34,38 @@ bookForm.addEventListener('submit',function(e){
 
 })
 
+bookCard.addEventListener('click', function(e){
+  const delBtn = e.target.closest('.delBtn')
+
+
+  if(delBtn){
+    const id = delBtn.dataset.id
+    console.log(`book deleted ${id}`)
+
+   myLibrary = myLibrary.filter(book => book.id !== id)
+
+    displayBooks()
+  }
+
+  
+})
+
+bookCard.addEventListener('click',function(e){
+  const toggle = e.target.closest('.toggle')
+
+  if(toggle){
+    const id = toggle.dataset.id
+    const books = myLibrary.find(book => book.id === id)
+    
+    if(books){
+      books.updateReadStatus()
+      displayBooks()
+    }
+   
+   
+  }
+})
+
 function addBookToLibrary ( title, author, pages, read){
   const book = new Book(title, author, pages, read)
   myLibrary.push(book)
@@ -37,15 +74,33 @@ function addBookToLibrary ( title, author, pages, read){
 }
 
 function displayBooks(){
-  const bookCard = document.querySelector('#bookCard')
+ 
   const books = myLibrary.map(book =>`
 
-    <div class="bg-white-300 shadow-lg rounded-xl p-2 w-full">
+    <div class="bg-white shadow-lg rounded-xl p-4 h-50 w-full">
 
-          <h3 class="text-xl text-center font-bold text-gray-800"> ${book.title}</h3>
-          <p class="text-gray-600 mt-1">${book.author}</p>
-          <p class="text-sm text-gray-500 mt-1">${book.pages}</p>
-          <span class="inline-block mt-3 px-3  text-sm bg-green-100 text-green-700 rounded-full">${book.read? 'read': 'not read yet'}</span>
+  <div class="flex justify-between items-center">
+
+    <h3 class="text-xl font-bold text-gray-800">
+      ${book.title}
+    </h3>
+
+    <button class='delBtn' data-id="${book.id}">
+      <img src="./icon/bin.png" alt="delete" class="w-5 hover:scale-110 transition">
+    </button>
+
+  </div>
+
+  <p class="text-gray-600 mt-2">${book.author}</p>
+
+  <p class="text-sm text-gray-500 mt-1">${book.pages}</p>
+
+  <span class="inline-block mt-3 px-3 py-1 text-sm bg-green-100 text-green-700 rounded-full">
+    ${book.read ? 'read' : 'not read yet'}
+  </span>
+  <button class="toggle bg-blue-500 px-3 py-1 rounded-full text-white text-xs block mt-2 hover:bg-blue-300 cursor-pointer" data-id='${book.id}'>toggle</button>
+
+</div>
        
 
           
@@ -61,25 +116,25 @@ function displayBooks(){
   addBookToLibrary('the hobbit','fazlie',204,false)
   addBookToLibrary('the hobbit','fazlie',204,false)
  addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
- addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
-addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
- addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
- addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
- addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
- addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
+//   addBookToLibrary('the hobbit','fazlie',204,false)
+//  addBookToLibrary('the hobbit','fazlie',204,false)
+//   addBookToLibrary('the hobbit','fazlie',204,false)
+// addBookToLibrary('the hobbit','fazlie',204,false)
+//   addBookToLibrary('the hobbit','fazlie',204,false)
+//   addBookToLibrary('the hobbit','fazlie',204,false)
+//  addBookToLibrary('the hobbit','fazlie',204,false)
+//   addBookToLibrary('the hobbit','fazlie',204,false)
+//   addBookToLibrary('the hobbit','fazlie',204,false)
+//  addBookToLibrary('the hobbit','fazlie',204,false)
+//   addBookToLibrary('the hobbit','fazlie',204,false)
+//  addBookToLibrary('the hobbit','fazlie',204,false)
+//   addBookToLibrary('the hobbit','fazlie',204,false)
+//  addBookToLibrary('the hobbit','fazlie',204,false)
+//   addBookToLibrary('the hobbit','fazlie',204,false)
+//   addBookToLibrary('the hobbit','fazlie',204,false)
+//   addBookToLibrary('the hobbit','fazlie',204,false)
+//   addBookToLibrary('the hobbit','fazlie',204,false)
+ 
 
 
 openBtn.addEventListener("click", () => {
@@ -89,5 +144,6 @@ openBtn.addEventListener("click", () => {
 closeBtn.addEventListener("click", () => {
   modal.classList.add("hidden")
 })
+
 
 
