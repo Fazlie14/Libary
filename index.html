@@ -7,12 +7,74 @@
   <title>Library</title>
 </head>
 <body>
-  <div class="flex items-center justify-center h-screen w-full bg-gray-200">
-    <div class="border p-2 h-screen w-auto">
-      <h1>My Library</h1>
-      <div id="bookCard"></div>
+  <div class=" flex items-center justify-center h-screen bg-gray-200">
+    <div class=" bg-white h-200 w-300 p-4 rounded-md   ">
+      <h1 class="text-xl text-center font-bold">My Library</h1>
+      <div id="bookCard" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 h-170 overflow-auto mt-3 border-t-4 border-b-2 border-gray-300  "></div>
+     
 
+      <button id="openModal" class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-300 cursor-pointer ">
+        Add Book
+      </button>
+      
+      <!-- Modal -->
+      <div id="modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center">
+      
+        <div class="bg-white w-96 p-6 rounded-xl shadow-lg">
+      
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">Add New Book</h2>
+            <button id="closeModal" class="text-gray-500 hover:text-red-500 text-lg">✕</button>
+          </div>
+      
+          <form id="bookForm" class="flex flex-col gap-3">
+      
+            <input
+              type="text"
+              id="title"
+              placeholder="Book Title"
+              class="border p-2 rounded"
+              required
+            >
+      
+            <input
+              type="text"
+              id="author"
+              placeholder="Author"
+              class="border p-2 rounded"
+              required
+            >
+      
+            <input
+              type="number"
+              id="pages"
+              placeholder="Pages"
+              class="border p-2 rounded"
+              required
+            >
+      
+            <label class="flex items-center gap-2">
+              <input type="checkbox" id="read">
+              <span>Already Read</span>
+            </label>
+      
+            <button
+              type="submit"
+              class="bg-green-500 text-white py-2 rounded hover:bg-green-600"
+            >
+              Add Book
+            </button>
+      
+          </form>
+      
+        </div>
+      
+      </div>
+
+      
     </div>
+
+  
 
   </div>
   
