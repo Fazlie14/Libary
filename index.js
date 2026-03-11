@@ -112,30 +112,6 @@ function displayBooks(){
    
 }
 
-  addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
-  addBookToLibrary('the hobbit','fazlie',204,false)
- addBookToLibrary('the hobbit','fazlie',204,false)
-//   addBookToLibrary('the hobbit','fazlie',204,false)
-//  addBookToLibrary('the hobbit','fazlie',204,false)
-//   addBookToLibrary('the hobbit','fazlie',204,false)
-// addBookToLibrary('the hobbit','fazlie',204,false)
-//   addBookToLibrary('the hobbit','fazlie',204,false)
-//   addBookToLibrary('the hobbit','fazlie',204,false)
-//  addBookToLibrary('the hobbit','fazlie',204,false)
-//   addBookToLibrary('the hobbit','fazlie',204,false)
-//   addBookToLibrary('the hobbit','fazlie',204,false)
-//  addBookToLibrary('the hobbit','fazlie',204,false)
-//   addBookToLibrary('the hobbit','fazlie',204,false)
-//  addBookToLibrary('the hobbit','fazlie',204,false)
-//   addBookToLibrary('the hobbit','fazlie',204,false)
-//  addBookToLibrary('the hobbit','fazlie',204,false)
-//   addBookToLibrary('the hobbit','fazlie',204,false)
-//   addBookToLibrary('the hobbit','fazlie',204,false)
-//   addBookToLibrary('the hobbit','fazlie',204,false)
-//   addBookToLibrary('the hobbit','fazlie',204,false)
- 
-
 
 openBtn.addEventListener("click", () => {
   modal.classList.remove("hidden")
